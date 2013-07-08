@@ -10,6 +10,8 @@ apt-get install -y foreman-installer
 cat > /usr/share/foreman-installer/foreman_installer/answers.yaml << EOF
 foreman: true
 foreman:
+  authentication: false
+  ssl: false
   organizations_enabled: true
   locations_enabled: true
 puppet: true
