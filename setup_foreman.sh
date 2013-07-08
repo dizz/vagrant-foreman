@@ -8,19 +8,15 @@ apt-get dist-upgrade -y
 apt-get install -y foreman-installer
 
 cat > /usr/share/foreman-installer/foreman_installer/answers.yaml << EOF
-foreman: true
 foreman:
   authentication: false
   ssl: false
   organizations_enabled: true
   locations_enabled: true
-puppet: true
 puppet:
   version: latest
-puppetmaster: true
 puppetmaster:
   git_repo: false
-foreman_proxy: true
 foreman_proxy:
   tftp_servername: 192.168.100.51
   dhcp: true
@@ -42,3 +38,4 @@ echo include foreman_installer | puppet apply --modulepath /usr/share/foreman-in
 # create organisation
 # create domain
 # import subnets
+# edit /etc/default/foreman
