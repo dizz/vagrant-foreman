@@ -4,9 +4,16 @@
 
 Vagrant.configure("2") do |config|
 
-  # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu12-latest"
-  #config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  centos = false
+
+  if centos
+    config.vm.box = 'CentOS-6.4-x86_64-v20130427'
+    config.vm.box_url = 'http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130427.box'
+  else
+    config.vm.box = "ubuntu12-latest"
+    config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  end
+
   config.vm.hostname = "foreman.cloudcomp.dev"
 
   config.vm.network :private_network, ip: "192.168.100.51"
@@ -15,6 +22,10 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
 
-  config.vm.provision :shell, :path => "setup_foreman.sh"
+  if centos
+    config.vm.provision :shell, :path => "setup_foreman_cos.sh"
+  else
+    config.vm.provision :shell, :path => "setup_foreman_ubu.sh"
+  end
 
 end
