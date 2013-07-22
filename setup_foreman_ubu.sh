@@ -33,7 +33,18 @@ EOF
 
 echo include foreman_installer | puppet apply --modulepath /usr/share/foreman-installer -v
 
-apt-get install foreman-compute foreman-fog
+apt-get -y install foreman-compute
+
+# mkdir /etc/puppet/environments/production/modules
+# mkdir /etc/puppet/environments/development/modules
+# create /usr/share/foreman/bundler.b/Gemfile.local.rb
+# gem 'foreman_discovery'
+# apt-get -y install foreman-sqlite3
+# apt-get install squashfs-tools
+# apt-get install advancecomp
+# rake discovery:build_image
+# cp discovery_image/initrd.gz /var/lib/tftpboot/boot/foreman_discovery-initrd.gz
+# cp discovery_image/vmlinuz /var/lib/tftpboot/boot/foreman_discovery-vmlinuz
 
 # PUB=eth0
 # PRIV=eth1
